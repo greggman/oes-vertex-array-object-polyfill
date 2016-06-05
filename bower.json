@@ -1,0 +1,21 @@
+{
+  "name": "oes-vertex-attrib-array-polyfill",
+  "version": "1.0.0",
+  "homepage": "https://github.com/greggman/oes-vertex-attrib-array-polyfill",
+  "authors": [
+    "Google"
+  ],
+  "description": "OES_vertex_array_object polyfill for GPUs/drivers/browsers missing it",
+  "main": "OESVertexArrayObject-polyfill.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "WebGL",
+    "OES_vertex_array_object"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "package.json"
+  ]
+}

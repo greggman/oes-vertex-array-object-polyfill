@@ -1,0 +1,26 @@
+{
+  "name": "oes-vertex-attrib-array-polyfill",
+  "version": "1.0.0",
+  "description": "OES_vertex_array_object polyfill for GPUs/drivers/browsers missing it",
+  "main": "OESVertexArrayObject-polyfill.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greggman/oes-vertex-array-object-polyfill.git"
+  },
+  "keywords": [
+    "WebGL",
+    "OES_vertex_array_object"
+  ],
+  "files": [
+    "OESVertexArrayObject-polyfill.js"
+  ],
+  "author": "Google",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/greggman/oes-vertex-array-object-polyfill/issues"
+  },
+  "homepage": "https://github.com/greggman/oes-vertex-array-object-polyfill#readme"
+}

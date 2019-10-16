@@ -325,6 +325,8 @@ OESVertexArrayObject.prototype.bindVertexArrayOES = function bindVertexArrayOES(
     };
   }
 
-  setupVertexArrayObject();
+  if (typeof WebGLRenderingContext !== 'undefined') {
+    setupVertexArrayObject();
+  }
 
 }());

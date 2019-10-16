@@ -1,6 +1,6 @@
 {
   "name": "oes-vertex-attrib-array-polyfill",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/greggman/oes-vertex-attrib-array-polyfill",
   "authors": [
     "Google"

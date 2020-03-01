@@ -20,21 +20,17 @@
 ** TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 ** MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 */
-(function() {
+if (typeof WebGLRenderingContext == 'function') (function() {
 "use strict";
 
 var glErrorShadow = { };
 
-function error(msg) {
-    if (window.console && window.console.error) {
-        window.console.error(msg);
-    }
-}
+var error = function(){}, log = error;
+var window_console = window.console;
 
-function log(msg) {
-    if (window.console && window.console.log) {
-        window.console.log(msg);
-    }
+if (window_console) {
+    error = window_console.error ? window_console.error.bind(window_console) : error;
+    log = window_console.log ? window_console.log.bind(window_console) : log;
 }
 
 function synthesizeGLError(err, opt_msg) {
@@ -297,36 +293,29 @@ OESVertexArrayObject.prototype.bindVertexArrayOES = function bindVertexArrayOES(
 };
 
 
-  function setupVertexArrayObject() {
-      var original_getSupportedExtensions = WebGLRenderingContext.prototype.getSupportedExtensions;
-      WebGLRenderingContext.prototype.getSupportedExtensions = function getSupportedExtensions() {
-         var list = original_getSupportedExtensions.call(this) || [];
-         if (list.indexOf("OES_vertex_array_object") < 0) {
-             list.push("OES_vertex_array_object");
-         }
-         return list;
-      };
-    
-      var original_getExtension = WebGLRenderingContext.prototype.getExtension;
-      WebGLRenderingContext.prototype.getExtension = function getExtension(name) {
-        var ext =  original_getExtension.call(this, name);
-        if (ext) {
-            return ext;
-        }
-        if (name !== "OES_vertex_array_object") {
-            return null;
-        }
+  var original_getSupportedExtensions = WebGLRenderingContext.prototype.getSupportedExtensions;
+  WebGLRenderingContext.prototype.getSupportedExtensions = function getSupportedExtensions() {
+     var list = original_getSupportedExtensions.call(this) || [];
+     if (list.indexOf("OES_vertex_array_object") < 0) {
+         list.push("OES_vertex_array_object");
+     }
+     return list;
+  };
 
-        if (!this.__OESVertexArrayObject) {
-            console.log("Setup OES_vertex_array_object polyfill");
-            this.__OESVertexArrayObject = new OESVertexArrayObject(this);
-        }
-        return this.__OESVertexArrayObject;
-    };
-  }
+  var original_getExtension = WebGLRenderingContext.prototype.getExtension;
+  WebGLRenderingContext.prototype.getExtension = function getExtension(name) {
+    var ext =  original_getExtension.call(this, name);
+    if (ext) {
+        return ext;
+    }
+    if (name !== "OES_vertex_array_object") {
+        return null;
+    }
 
-  if (typeof WebGLRenderingContext !== 'undefined') {
-    setupVertexArrayObject();
-  }
-
+    if (!this.__OESVertexArrayObject) {
+        log("Setup OES_vertex_array_object polyfill");
+        this.__OESVertexArrayObject = new OESVertexArrayObject(this);
+    }
+    return this.__OESVertexArrayObject;
+  };
 }());
